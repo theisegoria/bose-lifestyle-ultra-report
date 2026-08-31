@@ -4,58 +4,83 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Inside the Bose Lifestyle Ultra Speaker</title>
-  <meta name="description" content="A source-backed visual technical report on Bose CleanBass and TrueSpatial technology.">
+  <title>Computational Acoustics: HomePod 2 vs Bose Lifestyle Ultra</title>
+  <meta name="description" content="A patent-led visual investigation of how Apple HomePod 2 and Bose Lifestyle Ultra create bass, spatial sound, and room-aware playback.">
+  <meta property="og:title" content="Computational Acoustics: HomePod 2 vs Bose Lifestyle Ultra">
+  <meta property="og:description" content="Two compact speakers, two different strategies for controlled bass and spatial sound.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://theisegoria.github.io/bose-lifestyle-ultra-report/assets/homepod-report-cover.png">
   <style>
-    :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color-scheme: light dark; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: light-dark(#f5f8fa,#0c151d); color: light-dark(#142536,#edf5f8); }
-    main { width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: 72px 0 48px; }
-    .eyebrow { color: light-dark(#087f73,#52d1c1); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-    h1 { max-width: 780px; margin: 12px 0 18px; font-size: clamp(2.3rem,7vw,4.9rem); line-height: .98; letter-spacing: -.045em; }
-    .lead { max-width: 760px; color: light-dark(#4c6371,#b7c8d0); font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1.55; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 60px; }
-    a.button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; text-decoration: none; font-weight: 700; }
-    a.primary { background: light-dark(#142536,#edf5f8); color: light-dark(#fff,#142536); }
-    a.secondary { border: 1px solid light-dark(#bdcbd2,#40535e); color: inherit; }
-    .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 44px; }
-    .fact { padding-top: 16px; border-top: 2px solid light-dark(#d5e0e5,#2e414c); }
-    .fact strong { display: block; font-size: 1.15rem; margin-bottom: 6px; }
-    .fact span { color: light-dark(#59707d,#a9bac3); line-height: 1.45; }
-    section { margin-top: 50px; }
-    h2 { font-size: clamp(1.65rem,4vw,2.5rem); letter-spacing: -.025em; }
-    .frame { overflow: hidden; border: 1px solid light-dark(#d0dce2,#314650); border-radius: 20px; background: light-dark(#fff,#101d26); }
-    iframe { display: block; width: 100%; height: 630px; border: 0; background: transparent; }
-    .note { color: light-dark(#59707d,#a9bac3); line-height: 1.5; }
-    footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid light-dark(#d5e0e5,#2e414c); color: light-dark(#647a86,#9eb0b9); font-size: .86rem; }
-    @media (max-width: 700px) { main { padding-top: 44px; } .grid { grid-template-columns: 1fr; } iframe { height: 520px; } }
+    :root { color-scheme:light dark; --bg:light-dark(#f4f1ea,#0b1116); --paper:light-dark(#fffdf8,#111b23); --ink:light-dark(#142536,#edf4f6); --muted:light-dark(#5b6e77,#a8bbc3); --line:light-dark(#d8d5cc,#2a3b45); --blue:light-dark(#176b87,#5fb4cf); --teal:light-dark(#168b7d,#52cdb9); --amber:light-dark(#ba7a16,#efb94c); --purple:light-dark(#6f53a6,#ae91e4); --shadow:0 24px 70px light-dark(#24384b18,#0008); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; background:var(--bg); color:var(--ink); } a { color:inherit; }
+    .shell { width:min(1120px,calc(100% - 36px)); margin-inline:auto; }
+    .nav { position:sticky; top:0; z-index:20; border-bottom:1px solid var(--line); background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(14px); }
+    .nav .shell { min-height:58px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-size:.78rem; font-weight:750; letter-spacing:.11em; text-transform:uppercase; text-decoration:none; }
+    .links { display:flex; gap:19px; color:var(--muted); font-size:.86rem; } .links a { text-decoration:none; }
+    .hero { padding:86px 0 68px; position:relative; overflow:hidden; }
+    .hero::after { content:""; position:absolute; width:430px; height:430px; right:-140px; top:-120px; border-radius:50%; background:radial-gradient(circle,var(--teal),transparent 67%); opacity:.12; pointer-events:none; }
+    .eyebrow { color:var(--teal); font-size:.78rem; font-weight:750; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { max-width:900px; margin:14px 0 22px; font-size:clamp(3rem,8.2vw,6.8rem); line-height:.91; letter-spacing:-.06em; }
+    .lede { max-width:790px; color:var(--muted); font-size:clamp(1.08rem,2vw,1.34rem); line-height:1.55; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    .button { min-height:46px; display:inline-flex; align-items:center; justify-content:center; padding:0 19px; border:1px solid var(--line); border-radius:999px; text-decoration:none; font-weight:720; }
+    .button.primary { color:var(--paper); background:var(--ink); border-color:var(--ink); }
+    .thesis { display:grid; grid-template-columns:1.1fr .9fr; gap:44px; align-items:start; padding:56px 0; border-top:1px solid var(--line); }
+    h2 { margin:0 0 18px; font-size:clamp(2rem,4.5vw,3.5rem); line-height:1; letter-spacing:-.045em; } h3 { margin:0 0 8px; font-size:1.1rem; } p { line-height:1.62; }
+    .muted { color:var(--muted); } .verdict { margin:0; font-size:clamp(1.28rem,2.5vw,1.75rem); line-height:1.42; letter-spacing:-.02em; }
+    .mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; } .mini { padding-top:16px; border-top:3px solid var(--line); } .mini.apple { border-color:var(--blue); } .mini.bose { border-color:var(--purple); }
+    section { padding:68px 0; } .section-head { display:grid; grid-template-columns:.8fr 1.2fr; gap:32px; align-items:end; margin-bottom:30px; } .section-head p { margin:0; color:var(--muted); }
+    .architecture { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+    .system { background:var(--paper); border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:var(--shadow); }
+    .system img { display:block; width:100%; aspect-ratio:1.42; object-fit:cover; object-position:top; border-bottom:1px solid var(--line); }
+    .system-copy { padding:24px; } .tag { display:inline-block; margin-bottom:10px; color:var(--muted); font-size:.72rem; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
+    .path-list { display:grid; gap:0; margin-top:16px; } .path { display:grid; grid-template-columns:112px 1fr; gap:14px; padding:12px 0; border-top:1px solid var(--line); font-size:.92rem; } .path strong { color:var(--muted); }
+    .explainer-frame { overflow:hidden; border:1px solid var(--line); border-radius:22px; background:var(--paper); box-shadow:var(--shadow); } iframe { display:block; width:100%; height:620px; border:0; }
+    .comparison { display:grid; gap:1px; border:1px solid var(--line); background:var(--line); border-radius:18px; overflow:hidden; }
+    .row { display:grid; grid-template-columns:1.05fr .9fr .9fr 1.6fr; gap:1px; } .cell { padding:15px; background:var(--paper); line-height:1.4; }
+    .row.head .cell { color:var(--muted); font-size:.74rem; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+    .winner { font-weight:750; } .homepod { color:var(--blue); } .bose { color:var(--purple); }
+    .evidence { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; } .patent { padding:20px; border-top:3px solid var(--amber); background:var(--paper); } .patent code { color:var(--amber); font-size:.78rem; } .patent p { margin-bottom:0; color:var(--muted); font-size:.9rem; }
+    .downloads { display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:18px; }
+    .download { display:flex; flex-direction:column; min-height:220px; padding:25px; border:1px solid var(--line); border-radius:20px; background:var(--paper); text-decoration:none; transition:transform .18s ease,border-color .18s ease; }
+    .download:hover { transform:translateY(-3px); border-color:var(--teal); } .download.featured { background:var(--ink); color:var(--paper); } .download span { margin-top:auto; font-weight:750; } .download small { color:var(--muted); } .download.featured small { color:color-mix(in srgb,var(--paper) 65%,transparent); }
+    footer { padding:28px 0 46px; border-top:1px solid var(--line); color:var(--muted); font-size:.84rem; }
+    @media (max-width:800px) { .links{display:none}.thesis,.section-head{grid-template-columns:1fr}.architecture,.downloads{grid-template-columns:1fr}.evidence{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}.row.head{display:none}.cell{padding:10px 14px}.cell:first-child{padding-top:16px;font-weight:750}.cell:last-child{padding-bottom:16px}iframe{height:560px} }
+    @media (max-width:480px) { .hero{padding-top:58px}.mini-grid,.evidence{grid-template-columns:1fr}.path{grid-template-columns:1fr;gap:4px}iframe{height:600px} }
   </style>
 </head>
 <body>
-  <main>
-    <div class="eyebrow">Visual technical report</div>
-    <h1>Inside the Bose Lifestyle Ultra Speaker</h1>
-    <p class="lead">A source-backed reconstruction of how CleanBass and TrueSpatial likely coordinate the woofer, QuietPort, DSP, and up-firing driver — with documented facts kept separate from patent-supported inference.</p>
-    <div class="actions">
-      <a class="button primary" href="report.pdf">Read the PDF report</a>
-      <a class="button secondary" href="#explainer">Explore how it works</a>
-    </div>
-
-    <div class="grid" aria-label="Report highlights">
-      <div class="fact"><strong>CleanBass is a system</strong><span>Woofer, tuned enclosure, low-noise port geometry, active equalization, and level-dependent protection work together.</span></div>
-      <div class="fact"><strong>TrueSpatial is rendering</strong><span>Content analysis steers stable material forward and suitable diffuse energy into the reflected height path.</span></div>
-      <div class="fact"><strong>Evidence is qualified</strong><span>The report distinguishes Bose documentation, relevant patents, and engineering inference throughout.</span></div>
-    </div>
-
-    <section id="explainer">
-      <h2>Explore the acoustic paths</h2>
-      <p class="note">Switch between CleanBass and TrueSpatial, then move the level control to see the conceptual behavior change.</p>
-      <div class="frame">
-        <iframe src="explainer.html" title="Interactive Bose Lifestyle Ultra acoustic explainer"></iframe>
-      </div>
-    </section>
-
-    <footer>Independent technical analysis. Bose, CleanBass, TrueSpatial, QuietPort, and Lifestyle are trademarks of their respective owner.</footer>
+  <nav class="nav" aria-label="Primary navigation"><div class="shell"><a class="brand" href="#top">Computational Acoustics</a><div class="links"><a href="#systems">Systems</a><a href="#explore">Explore</a><a href="#performance">Performance</a><a href="#patents">Patents</a><a href="#reports">Reports</a></div></div></nav>
+  <main id="top">
+    <header class="hero"><div class="shell"><div class="eyebrow">Patent-led visual investigation</div><h1>Small speakers.<br>Large acoustic ideas.</h1><p class="lede">How Apple HomePod 2 and Bose Lifestyle Ultra use driver geometry, feedback, content analysis, and the room itself to create bass and spatial scale beyond their physical dimensions.</p><div class="actions"><a class="button primary" href="combined-technical-report.pdf">Download the combined report</a><a class="button" href="#explore">Explore the acoustic paths</a></div></div></header>
+    <div class="shell thesis"><div><div class="eyebrow">The central finding</div><p class="verdict">HomePod 2 is the more ambitious <em>self-adapting full-range system</em>. Bose Lifestyle Ultra is the more explicit <em>direct-and-reflected spatial-effect speaker</em>.</p></div><div class="mini-grid"><div class="mini apple"><h3>HomePod’s advantage</h3><p class="muted">Deeper bass, near-360-degree consistency, native Atmos, and automatic wall/free-space adaptation.</p></div><div class="mini bose"><h3>Bose’s advantage</h3><p class="muted">Forward focus, broader inputs, and a dedicated up-firing path that can create a stronger height cue.</p></div></div></div>
+    <section id="systems"><div class="shell"><div class="section-head"><h2>Two acoustic architectures</h2><p>The products attack the same compact-speaker problem from opposite directions. Apple surrounds the cabinet with individually controlled tweeters; Bose assigns separate radiators to forward detail and reflected height.</p></div><div class="architecture">
+      <article class="system"><img src="assets/homepod-report-cover.png" alt="Cover diagram from the HomePod 2 technical report"><div class="system-copy"><span class="tag">Apple HomePod 2</span><h3>Axisymmetric, sealed, feedback-controlled</h3><p class="muted">A 4-inch high-excursion woofer with stated 20 mm travel sits above five horn-loaded tweeters arranged around the base. A bass-EQ microphone and exterior microphone array feed continuous processing.</p><div class="path-list"><div class="path"><strong>Bass</strong><span>Sealed woofer + EQ + microphone feedback + level-dependent protection</span></div><div class="path"><strong>Spatial</strong><span>Correlation analysis + selectable beam patterns + room-aware direct/ambient steering</span></div><div class="path"><strong>Room</strong><span>Classifies wall, corner, bookshelf, or free-space placement and adapts</span></div></div></div></article>
+      <article class="system"><img src="assets/bose-report-cover.png" alt="Cover diagram from the Bose Lifestyle Ultra technical report"><div class="system-copy"><span class="tag">Bose Lifestyle Ultra</span><h3>Forward, ported, reflection-height</h3><p class="muted">A forward 3-inch woofer and rear QuietPort form the bass system. A forward tweeter anchors detail while a dedicated 1.5-inch up-firing driver sends selected energy toward ceiling and walls.</p><div class="path-list"><div class="path"><strong>CleanBass</strong><span>Tuned enclosure + low-noise port + active EQ + excursion protection</span></div><div class="path"><strong>TrueSpatial</strong><span>Coherent content remains forward; diffuse material can feed reflected height</span></div><div class="path"><strong>Room</strong><span>Height and bass are placement-sensitive; standalone auto-calibration is not documented</span></div></div></div></article>
+    </div></div></section>
+    <section id="explore"><div class="shell"><div class="section-head"><h2>Follow the acoustic paths</h2><p>Switch products and placement to see the conceptual direct, diffuse, reflected, and bass paths. The model explains documented relationships; it does not reproduce proprietary filter values.</p></div><div class="explainer-frame"><iframe src="comparison-explainer.html" title="Interactive HomePod 2 and Bose Lifestyle Ultra acoustic comparison"></iframe></div></div></section>
+    <section id="performance"><div class="shell"><div class="section-head"><h2>Expected audio performance</h2><p>HomePod has independent measurements and a mature patent trail. Bose is newer and lacks a shared laboratory comparison, so these are evidence-weighted expectations rather than invented scores.</p></div><div class="comparison" role="table" aria-label="Expected audio performance comparison">
+      <div class="row head" role="row"><div class="cell">Dimension</div><div class="cell">Expected leader</div><div class="cell">Confidence</div><div class="cell">Why</div></div>
+      <div class="row" role="row"><div class="cell">Deep bass at domestic level</div><div class="cell winner homepod">HomePod 2</div><div class="cell">High</div><div class="cell">Larger sealed woofer, 20 mm stated travel, and measured extension near 40 Hz.</div></div>
+      <div class="row" role="row"><div class="cell">360-degree consistency</div><div class="cell winner homepod">HomePod 2</div><div class="cell">High</div><div class="cell">Five-tweeter ring plus measured near-omnidirectional behavior.</div></div>
+      <div class="row" role="row"><div class="cell">Focused front image</div><div class="cell winner bose">Bose LS Ultra</div><div class="cell">Medium</div><div class="cell">Dedicated forward tweeter and explicitly front-facing architecture.</div></div>
+      <div class="row" role="row"><div class="cell">Single-speaker height cue</div><div class="cell winner bose">Bose LS Ultra</div><div class="cell">Medium</div><div class="cell">A dedicated up-firing driver creates a distinct ceiling path; performance remains room-dependent.</div></div>
+      <div class="row" role="row"><div class="cell">Automatic placement adaptation</div><div class="cell winner homepod">HomePod 2</div><div class="cell">High</div><div class="cell">Microphones, movement detection, room classification, low-frequency correction, and closely matching Apple patents.</div></div>
+      <div class="row" role="row"><div class="cell">Connectivity</div><div class="cell winner bose">Bose LS Ultra</div><div class="cell">High</div><div class="cell">Wi-Fi, Bluetooth 5.3, and 3.5 mm input versus HomePod’s Apple-centric network path.</div></div>
+    </div></div></section>
+    <section id="patents"><div class="shell"><div class="section-head"><h2>The patent trail</h2><p>Patents show mechanisms a company disclosed, not a definitive firmware bill of materials. These four disclosures have especially close functional or geometric links to the products.</p></div><div class="evidence">
+      <article class="patent"><code>APPLE US 10,244,314 B2</code><h3>Audio adaptation to room</h3><p>Classifies wall, bookshelf, corner, or free space; corrects bass; aims ambient and direct material differently.</p></article>
+      <article class="patent"><code>APPLE US 9,942,686 B1</code><h3>Beamforming spatial renderer</h3><p>Separates correlated and uncorrelated content, then selects omnidirectional and higher-order beam patterns.</p></article>
+      <article class="patent"><code>APPLE US 12,192,698 B2</code><h3>Reflection-aware geometry</h3><p>Places tilted horn-loaded ring drivers close to a support surface to reduce coloration and comb filtering.</p></article>
+      <article class="patent"><code>BOSE US 12,008,998 B2</code><h3>Height-channel upmixing</h3><p>Uses correlation, energy, pan preservation, and decorrelation to derive height material from conventional mixes.</p></article>
+    </div></div></section>
+    <section id="reports"><div class="shell"><div class="section-head"><h2>Read the full reports</h2><p>The combined edition preserves both original studies and their source notes. Individual editions remain available for focused reading.</p></div><div class="downloads">
+      <a class="download featured" href="combined-technical-report.pdf"><small>20 pages · combined edition</small><h3>HomePod 2 and Bose Lifestyle Ultra</h3><p>Both patent-led investigations in one printable technical volume.</p><span>Download combined PDF →</span></a>
+      <a class="download" href="homepod-vs-bose-report.pdf"><small>10 pages</small><h3>How HomePod 2 works</h3><p>Architecture, feedback bass, room sensing, beamforming, patents, and comparative performance.</p><span>Download PDF →</span></a>
+      <a class="download" href="bose-report.pdf"><small>10 pages</small><h3>Inside Bose Lifestyle Ultra</h3><p>CleanBass, QuietPort, TrueSpatial, up-firing reflection, limitations, and patent lineage.</p><span>Download PDF →</span></a>
+    </div></div></section>
   </main>
+  <footer><div class="shell">Independent technical analysis prepared from public documentation, patents, regulatory material, teardowns, and independent testing. Apple, HomePod, Bose, Lifestyle, CleanBass, TrueSpatial, and QuietPort are trademarks of their respective owners.</div></footer>
 </body>
 </html>
