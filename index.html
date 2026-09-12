@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class=" ig-document ig-editorial">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -48,12 +48,24 @@
     footer { padding:28px 0 46px; border-top:1px solid var(--line); color:var(--muted); font-size:.84rem; }
     @media (max-width:800px) { .links{display:none}.thesis,.section-head{grid-template-columns:1fr}.architecture,.downloads{grid-template-columns:1fr}.evidence{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}.row.head{display:none}.cell{padding:10px 14px}.cell:first-child{padding-top:16px;font-weight:750}.cell:last-child{padding-bottom:16px}iframe{height:560px} }
     @media (max-width:480px) { .hero{padding-top:58px}.mini-grid,.evidence{grid-template-columns:1fr}.path{grid-template-columns:1fr;gap:4px}iframe{height:600px} }
-  </style>
+  </style><!-- ISEGORIA:HEAD -->
+<link rel="stylesheet" href="/assets/site-shell.css?v=47b7776797">
+<script src="/assets/site-shell.js?v=47b7776797" ></script>
+<!-- /ISEGORIA:HEAD -->
 </head>
-<body>
-  <nav class="nav" aria-label="Primary navigation"><div class="shell"><a class="brand" href="#top">Computational Acoustics</a><div class="links"><a href="#systems">Systems</a><a href="#explore">Explore</a><a href="#performance">Performance</a><a href="#patents">Patents</a><a href="#reports">Reports</a></div></div></nav>
+<body class=" ig-site" data-site-kind="editorial" data-site-route="/bose-lifestyle-ultra-report/">
+<!-- ISEGORIA:NAV -->
+<a class="ig-skip" href="#ig-content">Skip to content</a>
+<header id="ig-header"><div class="ig-nav-inner">
+<a class="ig-brand" href="/" aria-label="Isegoria, home"><strong>ISEGORIA</strong><span>Benjamin Haire</span></a>
+<button class="ig-menu" type="button" aria-expanded="false" aria-controls="ig-primary">Menu</button>
+<nav id="ig-primary" aria-label="Primary navigation"><a href="/">Home</a><a href="/library.html">Library</a><a href="/#guides">Guides</a><a href="/#preoccupations" aria-current="location">Research</a><a href="/projects.html">Projects</a><a href="/about.html">About</a><a class="ig-language" href="/ja/" hreflang="ja" lang="ja">日本語</a><button class="ig-theme" type="button" hidden>Theme</button></nav>
+</div></header>
+<nav id="ig-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#preoccupations">Research</a><span aria-hidden="true">/</span><span aria-current="page">Computational Acoustics: HomePod 2 vs Bose Lifestyle Ultra</span></nav>
+<span id="ig-content" tabindex="-1"></span>
+<!-- /ISEGORIA:NAV --><nav class="nav" aria-label="Primary navigation"><div class="shell"><a class="brand" href="#top">Computational Acoustics</a><div class="links"><a href="#systems">Systems</a><a href="#explore">Explore</a><a href="#performance">Performance</a><a href="#patents">Patents</a><a href="#reports">Reports</a></div></div></nav>
   <main id="top">
-    <header class="hero"><div class="shell"><div class="eyebrow">Patent-led visual investigation</div><h1>Small speakers.<br>Large acoustic ideas.</h1><p class="lede">How Apple HomePod 2 and Bose Lifestyle Ultra use driver geometry, feedback, content analysis, and the room itself to create bass and spatial scale beyond their physical dimensions.</p><div class="actions"><a class="button primary" href="combined-technical-report.pdf">Download the combined report</a><a class="button" href="#explore">Explore the acoustic paths</a></div></div></header>
+    <header class="hero"><div class="shell"><div class="eyebrow">Patent-led visual investigation</div><h1>Small speakers.<br>Large acoustic ideas.</h1><p class="lede">How Apple HomePod 2 and Bose Lifestyle Ultra use driver geometry, feedback, content analysis, and the room itself to create bass and spatial scale beyond their physical dimensions.</p><div class="actions"><a class="button primary" href="combined-technical-report.pdf" target="_blank" rel="noopener" title="PDF, opens in a new tab">Download the combined report</a><a class="button" href="#explore">Explore the acoustic paths</a></div></div></header>
     <div class="shell thesis"><div><div class="eyebrow">The central finding</div><p class="verdict">HomePod 2 is the more ambitious <em>self-adapting full-range system</em>. Bose Lifestyle Ultra is the more explicit <em>direct-and-reflected spatial-effect speaker</em>.</p></div><div class="mini-grid"><div class="mini apple"><h3>HomePod’s advantage</h3><p class="muted">Deeper bass, near-360-degree consistency, native Atmos, and automatic wall/free-space adaptation.</p></div><div class="mini bose"><h3>Bose’s advantage</h3><p class="muted">Forward focus, broader inputs, and a dedicated up-firing path that can create a stronger height cue.</p></div></div></div>
     <section id="systems"><div class="shell"><div class="section-head"><h2>Two acoustic architectures</h2><p>The products attack the same compact-speaker problem from opposite directions. Apple surrounds the cabinet with individually controlled tweeters; Bose assigns separate radiators to forward detail and reflected height.</p></div><div class="architecture">
       <article class="system"><img src="assets/homepod-report-cover.png" alt="Cover diagram from the HomePod 2 technical report"><div class="system-copy"><span class="tag">Apple HomePod 2</span><h3>Axisymmetric, sealed, feedback-controlled</h3><p class="muted">A 4-inch high-excursion woofer with stated 20 mm travel sits above five horn-loaded tweeters arranged around the base. A bass-EQ microphone and exterior microphone array feed continuous processing.</p><div class="path-list"><div class="path"><strong>Bass</strong><span>Sealed woofer + EQ + microphone feedback + level-dependent protection</span></div><div class="path"><strong>Spatial</strong><span>Correlation analysis + selectable beam patterns + room-aware direct/ambient steering</span></div><div class="path"><strong>Room</strong><span>Classifies wall, corner, bookshelf, or free-space placement and adapts</span></div></div></div></article>
@@ -76,11 +88,13 @@
       <article class="patent"><code>BOSE US 12,008,998 B2</code><h3>Height-channel upmixing</h3><p>Uses correlation, energy, pan preservation, and decorrelation to derive height material from conventional mixes.</p></article>
     </div></div></section>
     <section id="reports"><div class="shell"><div class="section-head"><h2>Read the full reports</h2><p>The combined edition preserves both original studies and their source notes. Individual editions remain available for focused reading.</p></div><div class="downloads">
-      <a class="download featured" href="combined-technical-report.pdf"><small>20 pages · combined edition</small><h3>HomePod 2 and Bose Lifestyle Ultra</h3><p>Both patent-led investigations in one printable technical volume.</p><span>Download combined PDF →</span></a>
-      <a class="download" href="homepod-vs-bose-report.pdf"><small>10 pages</small><h3>How HomePod 2 works</h3><p>Architecture, feedback bass, room sensing, beamforming, patents, and comparative performance.</p><span>Download PDF →</span></a>
-      <a class="download" href="bose-report.pdf"><small>10 pages</small><h3>Inside Bose Lifestyle Ultra</h3><p>CleanBass, QuietPort, TrueSpatial, up-firing reflection, limitations, and patent lineage.</p><span>Download PDF →</span></a>
+      <a class="download featured" href="combined-technical-report.pdf" target="_blank" rel="noopener" title="PDF, opens in a new tab"><small>20 pages · combined edition</small><h3>HomePod 2 and Bose Lifestyle Ultra</h3><p>Both patent-led investigations in one printable technical volume.</p><span>Download combined PDF →</span></a>
+      <a class="download" href="homepod-vs-bose-report.pdf" target="_blank" rel="noopener" title="PDF, opens in a new tab"><small>10 pages</small><h3>How HomePod 2 works</h3><p>Architecture, feedback bass, room sensing, beamforming, patents, and comparative performance.</p><span>Download PDF →</span></a>
+      <a class="download" href="bose-report.pdf" target="_blank" rel="noopener" title="PDF, opens in a new tab"><small>10 pages</small><h3>Inside Bose Lifestyle Ultra</h3><p>CleanBass, QuietPort, TrueSpatial, up-firing reflection, limitations, and patent lineage.</p><span>Download PDF →</span></a>
     </div></div></section>
   </main>
-  <footer><div class="shell">Independent technical analysis prepared from public documentation, patents, regulatory material, teardowns, and independent testing. Apple, HomePod, Bose, Lifestyle, CleanBass, TrueSpatial, and QuietPort are trademarks of their respective owners.</div></footer>
+  <footer><div class="shell">Independent technical analysis prepared from public documentation, patents, regulatory material, teardowns, and independent testing. Apple, HomePod, Bose, Lifestyle, CleanBass, TrueSpatial, and QuietPort are trademarks of their respective owners.</div></footer><!-- ISEGORIA:FOOT -->
+<footer id="ig-footer"><div><a href="/">Isegoria · Benjamin Haire</a><nav aria-label="Site links"><a href="/">Back to home</a><a href="/library.html">Browse the library</a><a href="#ig-content">Back to top</a></nav></div></footer>
+<!-- /ISEGORIA:FOOT -->
 </body>
 </html>
