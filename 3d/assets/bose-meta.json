@@ -45,7 +45,7 @@
    "label": "top cap"
   },
   {
-   "name": "top_grille_ring",
+   "name": "top_grille",
    "component": "top",
    "layer": "shell",
    "explode": [
@@ -53,7 +53,18 @@
     0.0,
     60.0
    ],
-   "label": "top grille bezel"
+   "label": "up-firing grille"
+  },
+  {
+   "name": "top_controls",
+   "component": "top",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    0.0,
+    60.0
+   ],
+   "label": "control disc"
   },
   {
    "name": "port_frame",
@@ -75,7 +86,7 @@
     0.0,
     0.0
    ],
-   "label": "baffle and ribs"
+   "label": "chassis frame"
   },
   {
    "name": "woofer_surround",
@@ -398,27 +409,27 @@
   }
  ],
  "kind": "bose",
- "width": 184.0,
- "depth": 121.0,
- "height": 167.0,
+ "width": 121.1,
+ "depth": 167.5,
+ "height": 184.7,
  "woofer": {
   "p": [
-   0,
-   -50,
-   62
+   -6,
+   -74.75,
+   72
   ],
   "dir": [
    0,
    -1,
    0
   ],
-  "r": 37
+  "r": 36
  },
  "tweeter": {
   "p": [
-   0,
-   -50,
-   119
+   -24,
+   -74.75,
+   141
   ],
   "dir": [
    0,
@@ -429,26 +440,27 @@
  "upfire": {
   "p": [
    0,
-   14,
-   165
+   -38.75,
+   181.7
   ],
   "dir": [
    0,
    0,
    1
   ],
-  "r": 30
+  "r": 34.5
  },
  "port": {
   "p": [
    0,
-   60,
-   108
+   83.75,
+   56.0
   ],
   "dir": [
    0,
    1,
    0
   ]
- }
+ },
+ "provenance": "proportioned to Bose product photographs and marketing cutaway; envelope 184.7 x 121.1 x 167.5 mm (headphonecheck); generic construction"
 }

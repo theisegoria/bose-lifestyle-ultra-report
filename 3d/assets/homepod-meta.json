@@ -53,7 +53,7 @@
     0.0,
     -45.0
    ],
-   "label": "silicone base"
+   "label": "base and silicone foot"
   },
   {
    "name": "chassis",
@@ -73,7 +73,7 @@
    "explode": [
     0.0,
     0.0,
-    28.8
+    28.0
    ],
    "label": "woofer surround"
   },
@@ -84,7 +84,7 @@
    "explode": [
     0.0,
     0.0,
-    25.6
+    26.0
    ],
    "label": "woofer cone"
   },
@@ -95,7 +95,7 @@
    "explode": [
     0.0,
     0.0,
-    25.6
+    26.0
    ],
    "label": "woofer dust cap"
   },
@@ -106,9 +106,9 @@
    "explode": [
     0.0,
     0.0,
-    14.4
+    16.0
    ],
-   "label": "woofer voice coil former"
+   "label": "voice coil former"
   },
   {
    "name": "woofer_coil",
@@ -117,9 +117,9 @@
    "explode": [
     0.0,
     0.0,
-    14.4
+    16.0
    ],
-   "label": "woofer voice coil"
+   "label": "voice coil"
   },
   {
    "name": "woofer_spider",
@@ -128,9 +128,9 @@
    "explode": [
     0.0,
     0.0,
-    19.2
+    20.0
    ],
-   "label": "woofer spider"
+   "label": "spider"
   },
   {
    "name": "woofer_basket",
@@ -139,9 +139,9 @@
    "explode": [
     0.0,
     0.0,
-    22.4
+    22.0
    ],
-   "label": "woofer basket"
+   "label": "cast basket"
   },
   {
    "name": "woofer_topplate",
@@ -152,7 +152,7 @@
     0.0,
     8.0
    ],
-   "label": "woofer top plate"
+   "label": "top plate"
   },
   {
    "name": "woofer_magnet",
@@ -161,9 +161,9 @@
    "explode": [
     0.0,
     0.0,
-    3.2
+    3.0
    ],
-   "label": "woofer magnet"
+   "label": "ring magnet"
   },
   {
    "name": "woofer_backplate",
@@ -174,7 +174,18 @@
     0.0,
     0.0
    ],
-   "label": "woofer back plate and pole piece"
+   "label": "back plate and pole piece"
+  },
+  {
+   "name": "mic_bass",
+   "component": "mics",
+   "layer": "inner",
+   "explode": [
+    -20.0,
+    0.0,
+    0.0
+   ],
+   "label": "internal bass microphone and tube"
   },
   {
    "name": "tweeter0_dome",
@@ -182,7 +193,7 @@
    "layer": "inner",
    "explode": [
     0.0,
-    -45.0,
+    -40.0,
     0.0
    ],
    "label": "tweeter 1 dome"
@@ -193,7 +204,7 @@
    "layer": "inner",
    "explode": [
     0.0,
-    -45.0,
+    -40.0,
     0.0
    ],
    "label": "tweeter 1 surround"
@@ -204,7 +215,7 @@
    "layer": "inner",
    "explode": [
     0.0,
-    -36.0,
+    -32.0,
     0.0
    ],
    "label": "tweeter 1 faceplate"
@@ -215,7 +226,7 @@
    "layer": "inner",
    "explode": [
     0.0,
-    -22.5,
+    -20.0,
     0.0
    ],
    "label": "tweeter 1 voice coil"
@@ -237,18 +248,29 @@
    "layer": "inner",
    "explode": [
     0.0,
-    -45.0,
+    -40.0,
     0.0
    ],
    "label": "horn 1"
+  },
+  {
+   "name": "mouth0",
+   "component": "horns",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -40.0,
+    0.0
+   ],
+   "label": "horn mouth 1"
   },
   {
    "name": "tweeter1_dome",
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    42.798,
-    -13.906,
+    38.042,
+    -12.361,
     0.0
    ],
    "label": "tweeter 2 dome"
@@ -258,8 +280,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    42.798,
-    -13.906,
+    38.042,
+    -12.361,
     0.0
    ],
    "label": "tweeter 2 surround"
@@ -269,8 +291,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    34.238,
-    -11.125,
+    30.434,
+    -9.889,
     0.0
    ],
    "label": "tweeter 2 faceplate"
@@ -280,8 +302,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    21.399,
-    -6.953,
+    19.021,
+    -6.18,
     0.0
    ],
    "label": "tweeter 2 voice coil"
@@ -302,19 +324,30 @@
    "component": "horns",
    "layer": "inner",
    "explode": [
-    42.798,
-    -13.906,
+    38.042,
+    -12.361,
     0.0
    ],
    "label": "horn 2"
+  },
+  {
+   "name": "mouth1",
+   "component": "horns",
+   "layer": "inner",
+   "explode": [
+    38.042,
+    -12.361,
+    0.0
+   ],
+   "label": "horn mouth 2"
   },
   {
    "name": "tweeter2_dome",
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    26.45,
-    36.406,
+    23.511,
+    32.361,
     0.0
    ],
    "label": "tweeter 3 dome"
@@ -324,8 +357,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    26.45,
-    36.406,
+    23.511,
+    32.361,
     0.0
    ],
    "label": "tweeter 3 surround"
@@ -335,8 +368,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    21.16,
-    29.125,
+    18.809,
+    25.889,
     0.0
    ],
    "label": "tweeter 3 faceplate"
@@ -346,8 +379,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    13.225,
-    18.203,
+    11.756,
+    16.18,
     0.0
    ],
    "label": "tweeter 3 voice coil"
@@ -368,19 +401,30 @@
    "component": "horns",
    "layer": "inner",
    "explode": [
-    26.45,
-    36.406,
+    23.511,
+    32.361,
     0.0
    ],
    "label": "horn 3"
+  },
+  {
+   "name": "mouth2",
+   "component": "horns",
+   "layer": "inner",
+   "explode": [
+    23.511,
+    32.361,
+    0.0
+   ],
+   "label": "horn mouth 3"
   },
   {
    "name": "tweeter3_dome",
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -26.45,
-    36.406,
+    -23.511,
+    32.361,
     0.0
    ],
    "label": "tweeter 4 dome"
@@ -390,8 +434,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -26.45,
-    36.406,
+    -23.511,
+    32.361,
     0.0
    ],
    "label": "tweeter 4 surround"
@@ -401,8 +445,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -21.16,
-    29.125,
+    -18.809,
+    25.889,
     0.0
    ],
    "label": "tweeter 4 faceplate"
@@ -412,8 +456,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -13.225,
-    18.203,
+    -11.756,
+    16.18,
     0.0
    ],
    "label": "tweeter 4 voice coil"
@@ -434,19 +478,30 @@
    "component": "horns",
    "layer": "inner",
    "explode": [
-    -26.45,
-    36.406,
+    -23.511,
+    32.361,
     0.0
    ],
    "label": "horn 4"
+  },
+  {
+   "name": "mouth3",
+   "component": "horns",
+   "layer": "inner",
+   "explode": [
+    -23.511,
+    32.361,
+    0.0
+   ],
+   "label": "horn mouth 4"
   },
   {
    "name": "tweeter4_dome",
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -42.798,
-    -13.906,
+    -38.042,
+    -12.361,
     0.0
    ],
    "label": "tweeter 5 dome"
@@ -456,8 +511,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -42.798,
-    -13.906,
+    -38.042,
+    -12.361,
     0.0
    ],
    "label": "tweeter 5 surround"
@@ -467,8 +522,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -34.238,
-    -11.125,
+    -30.434,
+    -9.889,
     0.0
    ],
    "label": "tweeter 5 faceplate"
@@ -478,8 +533,8 @@
    "component": "tweeters",
    "layer": "inner",
    "explode": [
-    -21.399,
-    -6.953,
+    -19.021,
+    -6.18,
     0.0
    ],
    "label": "tweeter 5 voice coil"
@@ -500,11 +555,22 @@
    "component": "horns",
    "layer": "inner",
    "explode": [
-    -42.798,
-    -13.906,
+    -38.042,
+    -12.361,
     0.0
    ],
    "label": "horn 5"
+  },
+  {
+   "name": "mouth4",
+   "component": "horns",
+   "layer": "inner",
+   "explode": [
+    -38.042,
+    -12.361,
+    0.0
+   ],
+   "label": "horn mouth 5"
   },
   {
    "name": "board_main",
@@ -513,7 +579,7 @@
    "explode": [
     0.0,
     0.0,
-    -26.0
+    -24.0
    ],
    "label": "logic and amplifier board"
   },
@@ -524,20 +590,9 @@
    "explode": [
     0.0,
     0.0,
-    -26.0
+    -24.0
    ],
    "label": "heat spreader"
-  },
-  {
-   "name": "board_power",
-   "component": "boards",
-   "layer": "inner",
-   "explode": [
-    0.0,
-    0.0,
-    -40.0
-   ],
-   "label": "power board"
   },
   {
    "name": "mic_array",
@@ -549,143 +604,158 @@
     0.0
    ],
    "label": "microphone array"
-  },
-  {
-   "name": "mic_bass",
-   "component": "mics",
-   "layer": "inner",
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "label": "internal bass microphone"
   }
  ],
  "kind": "homepod",
  "height": 168.0,
- "radius": 71.0,
+ "radius": 68.5,
  "tweeters": [
   {
    "phi": -1.5707963267948966,
-   "tilt": 0.6632251157578453,
+   "tilt": 0.6981317007977318,
    "centre": [
-    2.26559671698723e-15,
-    -37.0,
-    46.0
+    1.16341447025124e-15,
+    -19.0,
+    54.0
    ],
    "dir": [
-    4.8251744692321e-17,
-    -0.7880107760429382,
-    -0.6156615018844604
+    3.9359394288698344e-17,
+    -0.6427876353263855,
+    -0.7660444378852844
    ],
    "mouth": [
-    3.4902435166328386e-15,
-    -57.0,
-    9.0
+    1.7757379759531628e-15,
+    -29.0,
+    27.0
+   ],
+   "mouth_normal": [
+    5.302876236065149e-17,
+    -0.8660253882408142,
+    -0.5
    ]
   },
   {
    "phi": -0.3141592653589793,
-   "tilt": 0.6632251157578453,
+   "tilt": 0.6981317007977318,
    "centre": [
-    35.189090728759766,
-    -11.433629035949707,
-    46.0
+    18.0700740814209,
+    -5.871323108673096,
+    54.0
    ],
    "dir": [
-    0.7494428157806396,
-    -0.2435087263584137,
-    -0.6156615018844604
+    0.6113274097442627,
+    -0.19863231480121613,
+    -0.7660444378852844
    ],
    "mouth": [
-    54.21022415161133,
-    -17.613969802856445,
-    9.0
+    27.580638885498047,
+    -8.961493492126465,
+    27.0
+   ],
+   "mouth_normal": [
+    0.8236390948295593,
+    -0.2676165699958801,
+    -0.5
    ]
   },
   {
    "phi": 0.9424777960769379,
-   "tilt": 0.6632251157578453,
+   "tilt": 0.6981317007977318,
    "centre": [
-    21.74805450439453,
-    29.933629989624023,
-    46.0
+    11.167919158935547,
+    15.371322631835938,
+    54.0
    ],
    "dir": [
-    0.46318110823631287,
-    0.6375141143798828,
-    -0.6156615018844604
+    0.37782108783721924,
+    0.5200261473655701,
+    -0.7660444378852844
    ],
    "mouth": [
-    33.50375747680664,
-    46.11396789550781,
-    9.0
+    17.045772552490234,
+    23.46149253845215,
+    27.0
+   ],
+   "mouth_normal": [
+    0.5090369582176208,
+    0.7006292343139648,
+    -0.5
    ]
   },
   {
    "phi": 2.199114857512855,
-   "tilt": 0.6632251157578453,
+   "tilt": 0.6981317007977318,
    "centre": [
-    -21.74805450439453,
-    29.933629989624023,
-    46.0
+    -11.167919158935547,
+    15.371322631835938,
+    54.0
    ],
    "dir": [
-    -0.46318110823631287,
-    0.6375141143798828,
-    -0.6156615018844604
+    -0.37782108783721924,
+    0.5200261473655701,
+    -0.7660444378852844
    ],
    "mouth": [
-    -33.50375747680664,
-    46.11396789550781,
-    9.0
+    -17.045772552490234,
+    23.46149253845215,
+    27.0
+   ],
+   "mouth_normal": [
+    -0.5090369582176208,
+    0.7006292343139648,
+    -0.5
    ]
   },
   {
    "phi": 3.4557519189487724,
-   "tilt": 0.6632251157578453,
+   "tilt": 0.6981317007977318,
    "centre": [
-    -35.189090728759766,
-    -11.433629035949707,
-    46.0
+    -18.0700740814209,
+    -5.871323108673096,
+    54.0
    ],
    "dir": [
-    -0.7494428157806396,
-    -0.2435087263584137,
-    -0.6156615018844604
+    -0.6113274097442627,
+    -0.19863231480121613,
+    -0.7660444378852844
    ],
    "mouth": [
-    -54.21022415161133,
-    -17.613969802856445,
-    9.0
+    -27.580638885498047,
+    -8.961493492126465,
+    27.0
+   ],
+   "mouth_normal": [
+    -0.8236390948295593,
+    -0.2676165699958801,
+    -0.5
    ]
   }
  ],
  "woofer": {
-  "z": 146,
-  "r": 40
+  "z": 146.0,
+  "r": 49.0
  },
  "mics": [
   [
-   42.42640687119285,
-   42.426406871192846,
-   99
+   43.84062043356595,
+   43.840620433565945,
+   121
   ],
   [
-   -42.426406871192846,
-   42.42640687119285,
-   99
+   -43.840620433565945,
+   43.84062043356595,
+   121
   ],
   [
-   -42.42640687119286,
-   -42.426406871192846,
-   99
+   -43.84062043356596,
+   -43.840620433565945,
+   121
   ],
   [
-   42.42640687119284,
-   -42.42640687119286,
-   99
+   43.84062043356594,
+   -43.84062043356596,
+   121
   ]
- ]
+ ],
+ "provenance": "proportioned to Apple newsroom cutaway (2023-01-18) and US12192698B2; generic construction"
 }

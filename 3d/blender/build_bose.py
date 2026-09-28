@@ -1,7 +1,12 @@
-# Generic three-radiator capsule speaker in the Lifestyle Ultra idiom: forward
-# woofer under a forward tweeter, a separate up-firing driver with a flared
-# waveguide, a curved rear-exiting port duct.  Original geometry; envelope
-# about 184 x 121 x 167 mm.  Front is -Y, up is +Z.
+# A three-radiator capsule speaker in the Lifestyle Ultra idiom, proportioned to
+# Bose's published photographs and marketing cutaway and to the published
+# envelope 184.7 (H) x 121.1 (W) x 167.5 (D) mm.  Footprint is an egg: a broad
+# rounded front, a narrower semicircular rear (top photograph).  The up-firing
+# grille (69 mm) sits 41 mm behind the front edge, the control disc (49 mm)
+# 41 mm ahead of the rear edge; the rear port (63 x 21 mm) is 56 mm above the
+# table.  Interior: forward tweeter above a forward woofer, an up-firing driver
+# under the grille, and a duct that rises up the rear wall from the port and
+# hooks over at the top (cutaway).  Front is -Y, up is +Z.  Original geometry.
 import sys, os, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from speaker_common import *
@@ -9,118 +14,117 @@ from speaker_common import *
 OUT = sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bose.glb')
 reset_scene(); make_root('bose'); M = palette(); P = Parts()
 
-W, D, H = 184.0, 121.0, 167.0
-PW = 3.4   # superellipse exponent: racetrack outline
+H, W, D = 184.7, 121.1, 167.5
+Y_FRONT, Y_REAR = -0.5 * D, 0.5 * D
+Z_PLINTH, Z_TOP = 19.0, H - 5.0
 
 def outline(a, s=1.0):
-    """Point on the racetrack outline at parameter angle a, scaled by s."""
+    """Egg footprint: a superellipse with a flatter, broader front (y<0) and a rounder, narrower rear."""
     c, si = math.cos(a), math.sin(a)
-    x = (W / 2) * math.copysign(abs(c) ** (2 / PW), c)
-    y = (D / 2) * math.copysign(abs(si) ** (2 / PW), si)
+    if si < 0:   # front half
+        p, wscale, dy = 3.2, 1.0, -Y_FRONT
+    else:        # rear half
+        p, wscale, dy = 2.1, 0.93, Y_REAR
+    x = (W / 2) * wscale * math.copysign(abs(c) ** (2 / p), c)
+    y = dy * math.copysign(abs(si) ** (2 / p), si)
     return x * s, y * s
 
 def bulge(z):
-    """Horizontal scale of the shell with height: slightly barrelled, rounded at the top."""
-    t = (z - 80) / 90.0
-    return 0.955 + 0.045 * math.sqrt(max(0.0, 1 - t * t)) ** 0.7
+    """The body is very slightly barrelled and tucks in under the top cap."""
+    t = (z - 100) / 90.0
+    return 0.975 + 0.025 * math.sqrt(max(0.0, 1 - t * t)) ** 0.8
 
-def half_shell(a0, a1, z0, z1, thick=2.2, nz=26, na=40):
-    rings_o, rings_i = [], []
-    for i in range(nz + 1):
-        z = z0 + (z1 - z0) * i / nz
-        s = bulge(z)
-        ro = [(*outline(a0 + (a1 - a0) * k / na, s), z) for k in range(na + 1)]
-        ri = [(*outline(a0 + (a1 - a0) * k / na, s - thick / (W / 2)), z) for k in range(na + 1)]
-        rings_o.append(ro); rings_i.append(ri)
-    b = Builder()
-    loft_open(b, rings_o, mi=0); loft_open(b, rings_i, mi=0, flip=True)
-    return b
+def ring_at(z, s, na=96):
+    return [(*outline(TAU * k / na, s), z) for k in range(na)]
 
 def loft_open(b, rings, mi=0, flip=False):
     n = len(rings[0]); m = len(rings)
-    verts = [v for ring in rings for v in ring]
-    faces = []
+    verts = [v for ring in rings for v in ring]; faces = []
     for i in range(m - 1):
         for k in range(n - 1):
             q = [i * n + k, i * n + k + 1, (i + 1) * n + k + 1, (i + 1) * n + k]
             faces.append(q[::-1] if flip else q)
     b.add(verts, faces, mi, True)
 
-# ---------------------------------------------------------------- shell halves, plinth, top
-b = half_shell(math.pi, 2 * math.pi, 10, 157)
-P.add(b, 'shell_front', [M['fabric_d']], 'shell', (0, -80, 0), layer='shell', label='fabric shell (front half)')
-b = half_shell(0.0, math.pi, 10, 157)
-P.add(b, 'shell_back', [M['fabric_d']], 'shell', (0, 80, 0), layer='shell', label='fabric shell (back half)')
+def half_shell(a0, a1, z0, z1, thick=2.2, nz=26, na=48):
+    ro, ri = [], []
+    for i in range(nz + 1):
+        z = z0 + (z1 - z0) * i / nz; s = bulge(z)
+        ro.append([(*outline(a0 + (a1 - a0) * k / na, s), z) for k in range(na + 1)])
+        ri.append([(*outline(a0 + (a1 - a0) * k / na, s - thick / (W / 2)), z) for k in range(na + 1)])
+    b = Builder(); loft_open(b, ro, mi=0); loft_open(b, ri, mi=0, flip=True); return b
 
-def ring_at(z, s, na=80):
-    return [(*outline(TAU * k / na, s), z) for k in range(na)]
-b = Builder(); loft(b, [ring_at(0, 0.93), ring_at(2.5, 0.955), ring_at(10, bulge(10)), ring_at(12, bulge(12) - 0.03)], mi=0)
+# ---------------------------------------------------------------- shell halves, plinth, top cap
+b = half_shell(math.pi, 2 * math.pi, Z_PLINTH, Z_TOP)
+P.add(b, 'shell_front', [M['fabric_d']], 'shell', (0, -80, 0), layer='shell', label='fabric shell (front half)')
+b = half_shell(0.0, math.pi, Z_PLINTH, Z_TOP)
+P.add(b, 'shell_back', [M['fabric_d']], 'shell', (0, 80, 0), layer='shell', label='fabric shell (back half)')
+b = Builder(); loft(b, [ring_at(0, 0.90), ring_at(3, 0.925), ring_at(Z_PLINTH - 1, bulge(Z_PLINTH) - 0.01), ring_at(Z_PLINTH + 1, bulge(Z_PLINTH) - 0.04)], mi=0)
 P.add(b, 'plinth', [M['shell_d']], 'base', (0, 0, -50), layer='shell', label='plinth')
-b = Builder(); loft(b, [ring_at(155, bulge(155) - 0.03), ring_at(157, bulge(157)), ring_at(163, 0.93), ring_at(H, 0.86)], mi=0)
+b = Builder(); loft(b, [ring_at(Z_TOP - 1, bulge(Z_TOP) - 0.04), ring_at(Z_TOP + 0.5, bulge(Z_TOP) + 0.01), ring_at(H - 1.5, 0.985), ring_at(H, 0.955)], mi=0)
 P.add(b, 'top_cap', [M['shell_d']], 'top', (0, 0, 60), layer='shell', label='top cap')
-# up-firing grille in the top cap: a ring of small holes is expensive; a recessed disc reads as the grille
-b = Builder(); cyl(b, 0, 14, 34, H - 0.6, H + 0.4, 64, rin=31, mi=0)
-P.add(b, 'top_grille_ring', [M['plastic_l']], 'top', (0, 0, 60), layer='shell', label='top grille bezel')
-# rear port frame
+Y_GRILLE, R_GRILLE = Y_FRONT + 41.0, 34.5
+b = Builder(); cyl(b, 0, Y_GRILLE, R_GRILLE + 1.5, H - 0.8, H + 0.3, 72, rin=R_GRILLE - 1.0, mi=0); cyl(b, 0, Y_GRILLE, R_GRILLE - 1.0, H - 0.8, H - 0.3, 72, mi=1)
+P.add(b, 'top_grille', [M['plastic_l'], M['plastic']], 'top', (0, 0, 60), layer='shell', label='up-firing grille')
+Y_CTRL = Y_REAR - 41.0
+b = Builder(); cyl(b, 0, Y_CTRL, 24.5, H - 1.2, H + 0.1, 64, rin=23.0, mi=0)
+P.add(b, 'top_controls', [M['plastic_l']], 'top', (0, 0, 60), layer='shell', label='control disc')
+# rear port frame: 63 x 21 mm opening centred 56 mm above the table
+PW, PH, PZ = 63.0, 21.0, 56.0
 b = Builder()
-box(b, -34, 34, 56, 61, 96, 100, mi=0); box(b, -34, 34, 56, 61, 116, 120, mi=0)
-box(b, -34, -30, 56, 61, 96, 120, mi=0); box(b, 30, 34, 56, 61, 96, 120, mi=0)
+yr = Y_REAR * 0.93 - 1.0
+for (x0, x1, z0, z1) in ((-PW / 2 - 4, PW / 2 + 4, PZ + PH / 2, PZ + PH / 2 + 4), (-PW / 2 - 4, PW / 2 + 4, PZ - PH / 2 - 4, PZ - PH / 2),
+                         (-PW / 2 - 4, -PW / 2, PZ - PH / 2, PZ + PH / 2), (PW / 2, PW / 2 + 4, PZ - PH / 2, PZ + PH / 2), (-1.2, 1.2, PZ - PH / 2, PZ + PH / 2)):
+    box(b, x0, x1, yr - 3, yr + 3, z0, z1, mi=0)
 P.add(b, 'port_frame', [M['plastic']], 'duct', (0, 60, 0), layer='shell', label='rear port opening')
 
-# ---------------------------------------------------------------- chassis: a baffle plate behind the front fabric
+# ---------------------------------------------------------------- chassis frame behind the front fabric (rails, not a plate, so the drivers read)
+Y_BAF = Y_FRONT + 9.0
 b = Builder()
-# baffle: vertical plate at y = -50, with holes for the woofer and tweeter
-pts = rounded([(-72, 14), (72, 14), (72, 150), (-72, 150)], r=14)
-verts = [(x, -50.5, z) for x, z in pts] + [(x, -48.0, z) for x, z in pts]
-n = len(pts)
-faces = [[i, (i + 1) % n, n + (i + 1) % n, n + i] for i in range(n)]
-b.add(verts, faces, 0, False)
-# baffle holes are implied by the drivers sitting through it; add two support ribs to the floor
-box(b, -60, -56, -48, 30, 12, 20, mi=0); box(b, 56, 60, -48, 30, 12, 20, mi=0)
-P.add(b, 'baffle', [M['plastic']], 'chassis', (0, 0, 0), label='baffle and ribs')
+for x0, x1 in ((-48, -42), (42, 48)):
+    box(b, x0, x1, Y_BAF - 1.5, Y_BAF + 6, Z_PLINTH + 3, Z_TOP - 6, mi=0)
+box(b, -48, 48, Y_BAF - 1.5, Y_BAF + 6, Z_PLINTH + 3, Z_PLINTH + 9, mi=0)
+box(b, -48, 48, Y_BAF - 1.5, Y_BAF + 6, Z_TOP - 12, Z_TOP - 6, mi=0)
+box(b, -48, 48, Y_BAF - 1.5, Y_BAF + 6, 112, 118, mi=0)
+box(b, -40, -36, Y_BAF, Y_BAF + 40, Z_PLINTH + 2, Z_PLINTH + 10, mi=0); box(b, 36, 40, Y_BAF, Y_BAF + 40, Z_PLINTH + 2, Z_PLINTH + 10, mi=0)
+P.add(b, 'baffle', [M['plastic']], 'chassis', (0, 0, 0), label='chassis frame')
 
-# ---------------------------------------------------------------- forward woofer (axis -Y)
-rot_fwd = (math.pi / 2, 0, 0)     # local +Z -> world -Y
-cone_driver(P, M, 'woofer', 'woofer', 0, 0, z_flange=0, r_cone=37, depth=17, r_vc=14, motor_h=26, magnet_r=32,
-            explode_up=1.6, label='woofer', loc=(0, -50, 62), rot=rot_fwd)
+# ---------------------------------------------------------------- forward woofer (axis -Y), ~85 mm frame, centre 72 mm up
+rot_fwd = (math.pi / 2, 0, 0)
+cone_driver(P, M, 'woofer', 'woofer', 0, 0, z_flange=0, r_cone=36, depth=16, r_vc=13, motor_h=24, magnet_r=31,
+            explode_up=1.6, label='woofer', loc=(-6, Y_BAF, 72), rot=rot_fwd)
 
-# ---------------------------------------------------------------- forward tweeter with a shallow waveguide
-dome_tweeter(P, M, 'tweeter', 'tweeter', r_dome=12.5, faceplate_r=24, explode=(0, -55, 0), loc=(0, -50, 119), rot=rot_fwd, label='front tweeter')
-b = Builder(); lathe(b, [(14.5, 0), (24.0, -0.2), (30.0, -4.5), (31.0, -6.0), (29.0, -6.0), (23.0, -1.5), (14.5, -1.5)], n=64, mi=0)
-P.add(b, 'tweeter_waveguide', [M['horn']], 'tweeter', (0, -55, 0), loc=(0, -50, 119), rot=rot_fwd, label='tweeter waveguide')
+# ---------------------------------------------------------------- forward tweeter in a shallow round waveguide, upper left
+TW = (-24, Y_BAF, 141)
+dome_tweeter(P, M, 'tweeter', 'tweeter', r_dome=12.0, faceplate_r=20, explode=(0, -55, 0), loc=TW, rot=rot_fwd, label='front tweeter')
+b = Builder(); lathe(b, [(14.0, 0), (21.0, -0.2), (27.0, -4.0), (28.0, -5.5), (26.0, -5.5), (20.5, -1.5), (14.0, -1.5)], n=64, mi=0)
+P.add(b, 'tweeter_waveguide', [M['horn']], 'tweeter', (0, -55, 0), loc=TW, rot=rot_fwd, label='tweeter waveguide')
 
-# ---------------------------------------------------------------- up-firing driver with a flared waveguide
-cone_driver(P, M, 'upfire', 'upfire', 0, 0, z_flange=0, r_cone=25, depth=11, r_vc=10.5, motor_h=20, magnet_r=25,
-            explode_up=1.6, label='up-firing driver', loc=(0, 14, 138), rot=None)
-b = Builder()
-rings = []
+# ---------------------------------------------------------------- up-firing driver under the grille, with a flared waveguide
+UP = (0, Y_GRILLE + 4.0, 0)
+cone_driver(P, M, 'upfire', 'upfire', 0, 0, z_flange=0, r_cone=23, depth=10, r_vc=10, motor_h=20, magnet_r=20,
+            explode_up=1.6, label='up-firing driver', loc=(UP[0], UP[1], H - 24), rot=None)
+b = Builder(); rings = []
 for i in range(7):
-    t = i / 6
-    z = 139 + (H - 2 - 139) * t
-    rr = 30 + 4 * t
-    ring = []
-    for k in range(64):
-        a = TAU * k / 64
-        # circle blending into a racetrack as it rises
-        cx = rr * math.cos(a); cy = rr * math.sin(a)
-        ox, oy = outline(a, 0.42 + 0.06 * t)
-        ring.append((cx * (1 - t) + ox * t, 14 + cy * (1 - t) + oy * t * 0.55, z))
-    rings.append(ring)
+    t = i / 6; z = H - 23 + (H - 3 - (H - 23)) * t; rr = 27 + (R_GRILLE - 3 - 27) * t
+    rings.append([(UP[0] + rr * math.cos(TAU * k / 64), UP[1] + rr * math.sin(TAU * k / 64), z) for k in range(64)])
 loft(b, rings, mi=0, cap0=False, cap1=False)
 P.add(b, 'upfire_waveguide', [M['horn']], 'upfire', (0, 0, 40), label='up-firing waveguide')
 
-# ---------------------------------------------------------------- port duct (rectangular section, curving up the back)
-path = [(0, -14, 20), (0, 12, 20), (0, 36, 26), (0, 47, 44), (0, 49, 70), (0, 49, 96), (0, 52, 106), (0, 60, 108)]
+# ---------------------------------------------------------------- port duct: from the rear opening, up the rear wall, hooking over at the top
+yw = yr - 14.0     # duct centreline behind the rear wall
+path = [(0, yr + 2, PZ), (0, yr - 8, PZ), (0, yw, PZ + 14), (0, yw, 120), (0, yw + 2, 148), (0, yw - 16, 163), (0, yw - 36, 158), (0, yw - 44, 143), (0, yw - 44, 128)]
 b = Builder()
-sweep_rect(b, path, 62, 20, mi=0, w_of=lambda t: 62 - 6 * math.sin(t * math.pi), h_of=lambda t: 20 + 4 * t)
+sweep_rect(b, path, PW, PH, mi=0, w_of=lambda t: PW - 8 * math.sin(t * math.pi) ** 2, h_of=lambda t: PH + 3 * t)
 P.add(b, 'duct', [M['duct']], 'duct', (0, 70, 0), label='port duct')
 
-# ---------------------------------------------------------------- amplifier board (generic, left side)
-board(P, M, 'board_amp', 'boards', -58, 6, 12, w=48, d=70, explode=(0, 0, -40), chips=7, seed=5, label='amplifier board')
+# ---------------------------------------------------------------- amplifier board (generic) on the base tray
+board(P, M, 'board_amp', 'boards', 0, 8, Z_PLINTH + 3, w=66, d=54, explode=(0, 0, -40), chips=7, seed=5, label='amplifier board')
 
 size = export_glb(OUT, P.meta(kind='bose', width=W, depth=D, height=H,
-                              woofer={'p': [0, -50, 62], 'dir': [0, -1, 0], 'r': 37},
-                              tweeter={'p': [0, -50, 119], 'dir': [0, -1, 0]},
-                              upfire={'p': [0, 14, 165], 'dir': [0, 0, 1], 'r': 30},
-                              port={'p': [0, 60, 108], 'dir': [0, 1, 0]}))
+                              woofer={'p': [-6, Y_BAF, 72], 'dir': [0, -1, 0], 'r': 36},
+                              tweeter={'p': [TW[0], TW[1], TW[2]], 'dir': [0, -1, 0]},
+                              upfire={'p': [UP[0], UP[1], H - 3], 'dir': [0, 0, 1], 'r': R_GRILLE},
+                              port={'p': [0, Y_REAR, PZ], 'dir': [0, 1, 0]},
+                              provenance='proportioned to Bose product photographs and marketing cutaway; envelope 184.7 x 121.1 x 167.5 mm (headphonecheck); generic construction'))
 print('exported', OUT, size, 'bytes,', len(P.list), 'parts')

@@ -88,7 +88,7 @@ function fill() {
   $$('[data-component]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.component === state.component));
   const c = P.components[state.component];
   $('#component-title').textContent = ja ? c[4] : c[1]; $('#component-copy').textContent = ja ? c[5] : c[2]; $('#component-source').href = c[6];
-  $('#component-evidence').textContent = L(UI.evidence);
+  $('#component-evidence').textContent = ja ? c[8] : c[7];
   const i = CHAPTERS.indexOf(state.chapter);
   $('#next').textContent = L(UI.next[state.chapter]) + ' →'; $('#step-count').textContent = `${i + 1} / 5`;
   $('#scale-tag').textContent = L(state.chapter === 'room' ? UI.scale.room : state.chapter === 'field' ? UI.scale.field : UI.scale[state.product]);
@@ -110,6 +110,8 @@ async function loadModel(key) {
   return gltfCache[key];
 }
 const bl = (v) => new THREE.Vector3(v[0], v[2], -v[1]);   // Blender mm frame -> glTF metres (direction) times MM applied by caller
+const blm = (v) => [v[0] * MM, v[2] * MM, -v[1] * MM];   // Blender mm point -> three.js metres
+const cabinetHeight = () => (meta?.height ?? 168) * MM;
 
 async function swapModel() {
   if (modelKey === state.product) return;
@@ -187,10 +189,10 @@ function preset(which, instant = false) {
     if (state.product === 'homepod') { target = new THREE.Vector3(0, 0.05, 0); pos = { hero: [1.6, 1.5, 2.1], front: [0.01, 1.0, 2.8], rear: [0.01, 1.0, -2.8], top: [0, 3.2, 0.01] }[which]; }
     else { const M = modelOffset(); target = new THREE.Vector3(M.x, state.ceiling / 2, M.z + 0.9); pos = { hero: [M.x + 3.2, state.ceiling * 0.6, M.z + 2.4], front: [M.x + 4.6, state.ceiling / 2, M.z + 0.9], rear: [M.x - 4.6, state.ceiling / 2, M.z + 0.9], top: [M.x, state.ceiling + 3, M.z + 0.91] }[which]; }
   } else {
-    const h = state.product === 'homepod' ? 0.168 : 0.167;
+    const h = cabinetHeight();
     target = new THREE.Vector3(0, h * 0.5 + ex * 0.05, 0);
-    const d = 0.36 * (1 + ex * 0.55) * (state.chapter === 'bass' ? 0.7 : 1);
-    if (state.chapter === 'bass') target.set(0, state.product === 'homepod' ? 0.13 : 0.062, state.product === 'homepod' ? 0 : 0.03);
+    const d = 0.36 * (1 + ex * 0.55) * (state.chapter === 'bass' ? 0.7 : 1) * (h / 0.168);
+    if (state.chapter === 'bass') { if (state.product === 'homepod') target.set(0, 0.12, 0); else { const w = blm(meta.woofer.p); target.set(w[0], w[1], w[2] + 0.02); } }
     pos = { hero: [d * 0.75, target.y + d * 0.55, d * 0.9], front: [0.001, target.y + d * 0.12, d * 1.3], rear: [0.001, target.y + d * 0.12, -d * 1.3], top: [0, target.y + d * 1.4, 0.001] }[which];
   }
   const end = new THREE.Vector3(...pos);
@@ -222,8 +224,8 @@ function placeModelInRoom() {
 function listenerPos() { const o = modelOffset(); return [o.x, 1.15, o.z + state.listenX]; }
 function mainSource() {
   const o = modelOffset();
-  if (state.product === 'homepod') return [o.x, o.y + 0.146, o.z];
-  return [o.x, o.y + 0.062, o.z + 0.05];
+  if (state.product === 'homepod') return [o.x, o.y + (meta?.woofer?.z ?? 146) * MM, o.z];
+  const w = blm(meta?.woofer?.p ?? [0, -74, 72]); return [o.x + w[0], o.y + w[1], o.z + w[2]];
 }
 const roomWanted = () => state.chapter === 'room' || (state.chapter === 'field' && state.product === 'bose');
 function buildRoom(withPaths = state.chapter === 'room') {
@@ -287,8 +289,9 @@ function fieldSources() {
     return A.tweeterRing(N, r, h, (90 - state.steer) * Math.PI / 180, state.focus, { offset: Math.PI / 2, width: 1.0 });
   }
   const o = modelOffset();
-  const up = { p: [o.x, o.y + 0.165, o.z - 0.014], amp: 1, phase: 0, delay: 0, dir: (dx, dy) => Math.max(0.03, 0.5 + 0.5 * dy) ** 1.4 };
-  const tw = { p: [o.x, o.y + 0.119, o.z + 0.05], amp: 0.7, phase: 0, delay: 0, dir: (dx, dy, dz) => Math.max(0.03, 0.5 + 0.5 * dz) ** 1.2 };
+  const pu = blm(meta.upfire.p), pt = blm(meta.tweeter.p);
+  const up = { p: [o.x + pu[0], o.y + pu[1], o.z + pu[2]], amp: 1, phase: 0, delay: 0, dir: (dx, dy) => Math.max(0.03, 0.5 + 0.5 * dy) ** 1.4 };
+  const tw = { p: [o.x + pt[0], o.y + pt[1], o.z + pt[2]], amp: 0.7, phase: 0, delay: 0, dir: (dx, dy, dz) => Math.max(0.03, 0.5 + 0.5 * dz) ** 1.2 };
   const R = roomDims().L, out = [];
   for (const s of [up, tw]) {
     out.push(s);
@@ -389,7 +392,7 @@ function drawAnalysis() {
   if (state.chapter === 'field' && state.product === 'bose') {
     ctx.fillText(L(UI.heightTitle), 12, 14);
     const o = modelOffset(); const R = roomDims().L; const lp = listenerPos();
-    const up = [o.x, o.y + 0.165, o.z - 0.014], img = [o.x, 2 * R[1] - up[1], up[2]];
+    const pu = blm(meta.upfire.p); const up = [o.x + pu[0], o.y + pu[1], o.z + pu[2]], img = [o.x, 2 * R[1] - up[1], up[2]];
     const x0 = 34, x1 = w - 12, y0 = 22, y1 = h - 22;
     const fLo = 200, fHi = 8000, nF = 240;
     const dbAt = (db) => y1 - (db + 12) / 24 * (y1 - y0);
