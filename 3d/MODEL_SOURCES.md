@@ -23,7 +23,17 @@ The public site was fetched and compared with the local project before work. The
 | [SoundGuys firsthand review](https://www.soundguys.com/bose-lifestyle-ultra-speaker-review-better-than-sonos-157251/) | Approximate Bose envelope, reported as 184 × 121 × 167 mm | Treated as reported dimensions rather than manufacturer metrology. |
 | [Bose FCC exhibit listing](https://fccid.io/A94443508/Test-Report/Test-Report-1-9301897) | Internal-photo metadata lists availability as 11 November 2026 for model 443508 / A94443508 | The internal-photo file was not available or inspected. The public marketing cutaway is used instead. |
 
-## Geometry and animation
+## Rebuilt in 3D, 28 September 2026
+
+The stylised primitive models were replaced by two generic speakers built parametrically in Blender (`3d/blender/build_homepod.py`, `3d/blender/build_bose.py`, helpers in `bl_helpers.py` and `speaker_common.py`) and exported as glTF (`3d/assets/*.glb`, with a `-meta.json` beside each listing every part, its component group and its explode vector). The cabinets keep the published envelopes; everything inside is a first-principles reconstruction of how a speaker of this kind is built (cone, surround, spider, voice coil on its former, top plate, ring magnet, back plate and pole piece; horn passages; a rectangular port duct; generic boards). It is not either manufacturer's design, and no interior dimension is a measurement. The Bose model now carries a generic amplifier board, so that the cabinet does not read as empty; it is not a claim about the real layout.
+
+The companion runs on the site's lab kit (`/assets/lab-kit/lab-kit.js`, three.js r186, WebGPU with WebGL 2 fallback). The Japanese page in the main repository loads this repository's `app.js`; the copy is chosen from `<html lang>`.
+
+## Computed acoustics
+
+`3d/acoustics.js` is pure and tested in Node (`node 3d/acoustics.test.mjs`, 36 checks). It provides monopole sums, delay-and-sum tweeter-ring beamforming, Allen and Berkley image sources (first and second order), an echogram, a fourth-order Linkwitz-Riley crossover and a two-way response map. The Field chapter renders `fieldOnPlane` (sound pressure level relative to the 99.5th percentile on the plane, 40 dB range) or `waveOnPlane` (instantaneous pressure) as a texture; the Room chapter draws the image-source paths and the echogram at the listener. Directivity is a simple cardioid weighting; diffraction, absorption spectra, room modes and manufacturer processing are outside the model.
+
+## Geometry and animation (superseded notes kept for the record)
 
 - The product scene uses decimetres: 1 scene unit = 100 mm. The room scene uses metres and scales the product by 0.1. Exterior dimensions are represented approximately; small lips and manufacturing tolerances are not measurement tools.
 - HomePod's lower drivers are deliberately distinct from Bose's forward drivers. Their circular backs face outward/upward while simplified horn paths turn toward the base. The visual fit is supported by the official image, with related patent context; exact production angles are not claimed.

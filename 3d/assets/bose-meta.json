@@ -1,0 +1,454 @@
+{
+ "parts": [
+  {
+   "name": "shell_front",
+   "component": "shell",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    -80.0,
+    0.0
+   ],
+   "label": "fabric shell (front half)"
+  },
+  {
+   "name": "shell_back",
+   "component": "shell",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    80.0,
+    0.0
+   ],
+   "label": "fabric shell (back half)"
+  },
+  {
+   "name": "plinth",
+   "component": "base",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    0.0,
+    -50.0
+   ],
+   "label": "plinth"
+  },
+  {
+   "name": "top_cap",
+   "component": "top",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    0.0,
+    60.0
+   ],
+   "label": "top cap"
+  },
+  {
+   "name": "top_grille_ring",
+   "component": "top",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    0.0,
+    60.0
+   ],
+   "label": "top grille bezel"
+  },
+  {
+   "name": "port_frame",
+   "component": "duct",
+   "layer": "shell",
+   "explode": [
+    0.0,
+    60.0,
+    0.0
+   ],
+   "label": "rear port opening"
+  },
+  {
+   "name": "baffle",
+   "component": "chassis",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "label": "baffle and ribs"
+  },
+  {
+   "name": "woofer_surround",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -28.8,
+    -0.0
+   ],
+   "label": "woofer surround"
+  },
+  {
+   "name": "woofer_cone",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -25.6,
+    -0.0
+   ],
+   "label": "woofer cone"
+  },
+  {
+   "name": "woofer_dustcap",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -25.6,
+    -0.0
+   ],
+   "label": "woofer dust cap"
+  },
+  {
+   "name": "woofer_former",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -14.4,
+    -0.0
+   ],
+   "label": "woofer voice coil former"
+  },
+  {
+   "name": "woofer_coil",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -14.4,
+    -0.0
+   ],
+   "label": "woofer voice coil"
+  },
+  {
+   "name": "woofer_spider",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -19.2,
+    -0.0
+   ],
+   "label": "woofer spider"
+  },
+  {
+   "name": "woofer_basket",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -22.4,
+    -0.0
+   ],
+   "label": "woofer basket"
+  },
+  {
+   "name": "woofer_topplate",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -8.0,
+    -0.0
+   ],
+   "label": "woofer top plate"
+  },
+  {
+   "name": "woofer_magnet",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -3.2,
+    -0.0
+   ],
+   "label": "woofer magnet"
+  },
+  {
+   "name": "woofer_backplate",
+   "component": "woofer",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "label": "woofer back plate and pole piece"
+  },
+  {
+   "name": "tweeter_dome",
+   "component": "tweeter",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -55.0,
+    0.0
+   ],
+   "label": "front tweeter dome"
+  },
+  {
+   "name": "tweeter_surround",
+   "component": "tweeter",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -55.0,
+    0.0
+   ],
+   "label": "front tweeter surround"
+  },
+  {
+   "name": "tweeter_faceplate",
+   "component": "tweeter",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -44.0,
+    0.0
+   ],
+   "label": "front tweeter faceplate"
+  },
+  {
+   "name": "tweeter_coil",
+   "component": "tweeter",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -27.5,
+    0.0
+   ],
+   "label": "front tweeter voice coil"
+  },
+  {
+   "name": "tweeter_motor",
+   "component": "tweeter",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "label": "front tweeter magnet and plates"
+  },
+  {
+   "name": "tweeter_waveguide",
+   "component": "tweeter",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    -55.0,
+    0.0
+   ],
+   "label": "tweeter waveguide"
+  },
+  {
+   "name": "upfire_surround",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    28.8
+   ],
+   "label": "up-firing driver surround"
+  },
+  {
+   "name": "upfire_cone",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    25.6
+   ],
+   "label": "up-firing driver cone"
+  },
+  {
+   "name": "upfire_dustcap",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    25.6
+   ],
+   "label": "up-firing driver dust cap"
+  },
+  {
+   "name": "upfire_former",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    14.4
+   ],
+   "label": "up-firing driver voice coil former"
+  },
+  {
+   "name": "upfire_coil",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    14.4
+   ],
+   "label": "up-firing driver voice coil"
+  },
+  {
+   "name": "upfire_spider",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    19.2
+   ],
+   "label": "up-firing driver spider"
+  },
+  {
+   "name": "upfire_basket",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    22.4
+   ],
+   "label": "up-firing driver basket"
+  },
+  {
+   "name": "upfire_topplate",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    8.0
+   ],
+   "label": "up-firing driver top plate"
+  },
+  {
+   "name": "upfire_magnet",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    3.2
+   ],
+   "label": "up-firing driver magnet"
+  },
+  {
+   "name": "upfire_backplate",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "label": "up-firing driver back plate and pole piece"
+  },
+  {
+   "name": "upfire_waveguide",
+   "component": "upfire",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    40.0
+   ],
+   "label": "up-firing waveguide"
+  },
+  {
+   "name": "duct",
+   "component": "duct",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    70.0,
+    0.0
+   ],
+   "label": "port duct"
+  },
+  {
+   "name": "board_amp",
+   "component": "boards",
+   "layer": "inner",
+   "explode": [
+    0.0,
+    0.0,
+    -40.0
+   ],
+   "label": "amplifier board"
+  }
+ ],
+ "kind": "bose",
+ "width": 184.0,
+ "depth": 121.0,
+ "height": 167.0,
+ "woofer": {
+  "p": [
+   0,
+   -50,
+   62
+  ],
+  "dir": [
+   0,
+   -1,
+   0
+  ],
+  "r": 37
+ },
+ "tweeter": {
+  "p": [
+   0,
+   -50,
+   119
+  ],
+  "dir": [
+   0,
+   -1,
+   0
+  ]
+ },
+ "upfire": {
+  "p": [
+   0,
+   14,
+   165
+  ],
+  "dir": [
+   0,
+   0,
+   1
+  ],
+  "r": 30
+ },
+ "port": {
+  "p": [
+   0,
+   60,
+   108
+  ],
+  "dir": [
+   0,
+   1,
+   0
+  ]
+ }
+}
