@@ -9,7 +9,7 @@
     -80.0,
     0.0
    ],
-   "label": "fabric shell (front half)"
+   "label": "fabric panel (front and sides)"
   },
   {
    "name": "shell_back",
@@ -20,7 +20,7 @@
     80.0,
     0.0
    ],
-   "label": "fabric shell (back half)"
+   "label": "hard shell (rear and sides)"
   },
   {
    "name": "plinth",
@@ -31,7 +31,7 @@
     0.0,
     -50.0
    ],
-   "label": "plinth"
+   "label": "base and foot"
   },
   {
    "name": "top_cap",
@@ -415,7 +415,7 @@
  "woofer": {
   "p": [
    0,
-   -74.75,
+   -63.75,
    72
   ],
   "dir": [
@@ -428,7 +428,7 @@
  "tweeter": {
   "p": [
    0,
-   -74.75,
+   -63.75,
    143
   ],
   "dir": [
@@ -440,7 +440,7 @@
  "upfire": {
   "p": [
    0,
-   -38.75,
+   -22.75,
    181.7
   ],
   "dir": [

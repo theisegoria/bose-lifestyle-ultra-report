@@ -143,8 +143,10 @@ function applyFinish() {
   const dark = state.finish === 'dark';
   for (const [name, o] of parts) {
     const mat = o.material;
-    if (name.startsWith('shell_')) { mat.color.set(dark ? 0x1e1e20 : 0x9d9a93); }
-    if (name === 'top_ring' || name === 'top_cap' || name === 'plinth') mat.color.set(dark ? 0x232325 : 0xd9d6d0);
+    if (name === 'shell_front') mat.color.set(dark ? 0x262629 : 0x9d9a93);            // woven panel reads a shade lighter than the moulded shell
+    if (name.startsWith('shell_') && name !== 'shell_front') mat.color.set(dark ? 0x1c1c1e : 0xd9d6d0);
+    if (name === 'top_grille' || name === 'top_controls') mat.color.set(dark ? 0x0c0c0d : 0x8f8c86);
+    if (name === 'top_ring' || name === 'top_cap' || name === 'plinth') mat.color.set(dark ? 0x1c1c1e : 0xd9d6d0);
   }
 }
 
