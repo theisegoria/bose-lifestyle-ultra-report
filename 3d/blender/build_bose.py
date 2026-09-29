@@ -4,7 +4,7 @@
 # rounded front, a narrower semicircular rear (top photograph).  The up-firing
 # grille (69 mm) sits 41 mm behind the front edge, the control disc (49 mm)
 # 41 mm ahead of the rear edge; the rear port (63 x 21 mm) is 56 mm above the
-# table.  Interior: forward tweeter above a forward woofer, an up-firing driver
+# table.  Interior: forward tweeter directly above a forward woofer on the midline, an up-firing driver
 # under the grille, and a duct that rises up the rear wall from the port and
 # hooks over at the top (cutaway).  Front is -Y, up is +Z.  Original geometry.
 import sys, os, math
@@ -92,10 +92,10 @@ P.add(b, 'baffle', [M['plastic']], 'chassis', (0, 0, 0), label='chassis frame')
 # ---------------------------------------------------------------- forward woofer (axis -Y), ~85 mm frame, centre 72 mm up
 rot_fwd = (math.pi / 2, 0, 0)
 cone_driver(P, M, 'woofer', 'woofer', 0, 0, z_flange=0, r_cone=36, depth=16, r_vc=13, motor_h=24, magnet_r=31,
-            explode_up=1.6, label='woofer', loc=(-6, Y_BAF, 72), rot=rot_fwd)
+            explode_up=1.6, label='woofer', loc=(0, Y_BAF, 72), rot=rot_fwd)
 
-# ---------------------------------------------------------------- forward tweeter in a shallow round waveguide, upper left
-TW = (-24, Y_BAF, 141)
+# ---------------------------------------------------------------- forward tweeter in a shallow round waveguide, directly above the woofer
+TW = (0, Y_BAF, 143)   # centre line, directly above the woofer (Bose cutaway; front photograph)
 dome_tweeter(P, M, 'tweeter', 'tweeter', r_dome=12.0, faceplate_r=20, explode=(0, -55, 0), loc=TW, rot=rot_fwd, label='front tweeter')
 b = Builder(); lathe(b, [(14.0, 0), (21.0, -0.2), (27.0, -4.0), (28.0, -5.5), (26.0, -5.5), (20.5, -1.5), (14.0, -1.5)], n=64, mi=0)
 P.add(b, 'tweeter_waveguide', [M['horn']], 'tweeter', (0, -55, 0), loc=TW, rot=rot_fwd, label='tweeter waveguide')
@@ -122,7 +122,7 @@ P.add(b, 'duct', [M['duct']], 'duct', (0, 70, 0), label='port duct')
 board(P, M, 'board_amp', 'boards', 0, 8, Z_PLINTH + 3, w=66, d=54, explode=(0, 0, -40), chips=7, seed=5, label='amplifier board')
 
 size = export_glb(OUT, P.meta(kind='bose', width=W, depth=D, height=H,
-                              woofer={'p': [-6, Y_BAF, 72], 'dir': [0, -1, 0], 'r': 36},
+                              woofer={'p': [0, Y_BAF, 72], 'dir': [0, -1, 0], 'r': 36},
                               tweeter={'p': [TW[0], TW[1], TW[2]], 'dir': [0, -1, 0]},
                               upfire={'p': [UP[0], UP[1], H - 3], 'dir': [0, 0, 1], 'r': R_GRILLE},
                               port={'p': [0, Y_REAR, PZ], 'dir': [0, 1, 0]},
